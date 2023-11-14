@@ -38,3 +38,9 @@ Die Abfolge der Nachrichtenflüsse soll in einem UML-Sequenzdiagramm dargestellt
 ![UML-Sequence Diagramm](diagramme/UML-Sequence.drawio.svg)
 
 
+### EDGAR & TIM
+Zum starten:
+- cd api
+- python api.py
+
+

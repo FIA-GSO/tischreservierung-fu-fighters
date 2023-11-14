@@ -15,11 +15,6 @@ def reserveTable():
 def getFreeTables():
     return 'no free tables'
 
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
 
 @app.route('/api/tables/all', methods=['GET'])
 def api_all():
@@ -34,5 +29,29 @@ def api_all():
         ).fetchall()
 
     return jsonify(free_tables)
+
+@app.route('/api/reservations/cancel', methods=['DELETE'])
+def cancel_reservation():
+    query_parameters = request.args
+    table_number = query_parameters.get('table_number')
+    date = query_parameters.get('date')
+
+    conn = sqlite3.connect('schema.db')
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+    # Siehe Sequenzdiagramm in Mermaid: Der Zeitpunkt muss noch überprüft werden
+    # Der Eintrag muss gelöscht werden
+    reservation = cur.execute(
+        "DELETE * FROM reservierungen WHERE tischnummer = \'" + table_number + "\' AND zeitpunkt = \'" + date + "\';"
+        ).delete()
+
+    # Was mache ich hier
+    return "Die Reservierung wurde storniert."
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
 
 app.run()

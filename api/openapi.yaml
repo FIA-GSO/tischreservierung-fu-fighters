@@ -12,8 +12,39 @@ paths:
         '200':    # status code
           description: HTML
           content:
+            text/html:
+              schema: 
+                type: string
+  /api/v1/free-tables:
+    get:
+      summary: Get free tables.
+      description: Get free tables.
+      responses:
+        '200':    # status code
+          description: Get an array of objects of free tables
+          content:
             application/json:
               schema: 
                 type: array
-                items: 
+  /api/v1/reservation:
+    delete:
+      summary: Delete table reservation
+      description: Delete table reservation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                table_number:
+                  type: integer
+                date:
                   type: string
+      responses:
+        '200':    # status code
+          description: json
+          content:
+            application/json:
+              schema: 
+                type: object

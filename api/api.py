@@ -16,7 +16,7 @@ def getFreeTables():
     return 'no free tables'
 
 
-@app.route('/api/v1/tables/all', methods=['GET'])
+@app.route('/api/v1/tables', methods=['GET'])
 def api_all():
     query_parameters = request.args
     date = query_parameters.get('date')
@@ -30,7 +30,7 @@ def api_all():
 
     return jsonify(free_tables)
 
-@app.route('/api/v1/reservations/cancel', methods=['DELETE'])
+@app.route('/api/v1/reservations', methods=['DELETE'])
 def cancel_reservation():
     query_parameters = request.args
     table_number = query_parameters.get('table_number')

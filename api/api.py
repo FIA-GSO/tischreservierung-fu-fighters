@@ -11,13 +11,8 @@ app.config["DEBUG"] = True  # Zeigt Fehlerinformationen im Browser, statt nur ei
 def reserveTable():
     return "<h1>Tischreservierung</h1>"
 
-@app.route('/api/v1/resources/free-tables', methods=['GET'])
+@app.route('/api/v1/free-tables', methods=['GET'])
 def getFreeTables():
-    return 'no free tables'
-
-
-@app.route('/api/v1/resources/tables', methods=['GET'])
-def api_all():
     query_parameters = request.args
     date = query_parameters.get('date')
 
@@ -30,7 +25,8 @@ def api_all():
 
     return jsonify(free_tables)
 
-@app.route('/api/v1/resources/reservation/{reservationId}/', methods=['DELETE'])
+
+@app.route('/api/v1/reservation', methods=['DELETE'])
 def cancel_reservation():
     query_parameters = request.args
     table_number = query_parameters.get('table_number')

@@ -12,12 +12,7 @@ def reserveTable():
     return "<h1>Tischreservierung</h1>"
 
 @app.route('/api/v1/free-tables', methods=['GET'])
-def getFreeTables():
-    return 'no free tables'
-
-
-@app.route('/api/v1/tables', methods=['GET'])
-def api_all():
+def get_free_tables():
     query_parameters = request.args
     date = query_parameters.get('date')
 

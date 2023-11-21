@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: Table Reservation API
+  description: You can reserve tables here.
+  version: 1.0.0
+paths:
+  /api/v1/:
+    get:
+      summary: Get HTML file.
+      description: Get HTML file.
+      responses:
+        '200':    # status code
+          description: HTML
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string

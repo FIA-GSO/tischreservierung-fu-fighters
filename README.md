@@ -42,5 +42,6 @@ Die Abfolge der Nachrichtenflüsse soll in einem UML-Sequenzdiagramm dargestellt
 Zum starten:
 - cd api
 - python api.py
+- Im Browser eingeben: localhost:5000/api/v1/
 
 

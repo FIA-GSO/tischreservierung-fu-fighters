@@ -1,15 +1,25 @@
 import flask
 from flask import request   # wird benötigt, um die HTTP-Parameter abzufragen
 from flask import jsonify   # übersetzt python-dicts in json
+from flask import Flask
 
 import sqlite3
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True  # Zeigt Fehlerinformationen im Browser, statt nur einer generischen Error-Message
 
-@app.route('/api/v1/', methods=['GET'])
-def index_page():
-    return "<h1>Tischreservierung</h1>"
+def create_app():                           # Factory Pattern
+    app = Flask(__name__)
+    
+    test_index(app)                           # Fügt app die Route für hello_world hinzu
+
+    return app
+
+
+def test_index(app):
+    @app.route('/api/v1/', methods=['GET'])
+    def index_page():
+        return "<h1>Tischreservierung</h1>"
 
 @app.route('/api/v1/free-tables', methods=['GET'])
 def getFreeTables():
@@ -50,4 +60,6 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-app.run()
+if __name__ == "__main__":
+    app = create_app()
+    app.run()

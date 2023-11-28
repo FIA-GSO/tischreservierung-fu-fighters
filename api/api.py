@@ -8,7 +8,7 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True  # Zeigt Fehlerinformationen im Browser, statt nur einer generischen Error-Message
 
 @app.route('/api/v1/', methods=['GET'])
-def reserveTable():
+def index_page():
     return "<h1>Tischreservierung</h1>"
 
 @app.route('/api/v1/free-tables', methods=['GET'])
